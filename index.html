@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salle de sport Omnes - Coachs</title>
+    <style>
+        .coach-card {
+            border: 1px solid #ccc;
+            padding: 16px;
+            margin: 16px;
+            text-align: center;
+        }
+        .coach-photo {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+        }
+        .button-group {
+            margin-top: 10px;
+        }
+        .button-group button {
+            margin: 5px;
+            padding: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div id="coach-container"></div>
+
+<script>
+    const coaches = [
+        { id: 30301, nom: 'Delapart', prenom: 'Thibaud', photo: 'Images/coach_Tibo.jpeg' },
+        { id: 30302, nom: 'Goggins', prenom: 'David', photo: 'Images/coach_goggins.webp' },
+        { id: 30303, nom: 'Sutton', prenom: 'Shane', photo: 'Images/coach_shane.webp' },
+        { id: 30304, nom: 'Thompson', prenom: 'Shaun', photo: 'Images/coach_shaun.jpeg' },
+        { id: 30305, nom: 'Becattini', prenom: 'Justine', photo: 'Images/coach_juju.jpeg' },
+        { id: 30306, nom: 'Parker', prenom: 'Tony', photo: 'Images/coach_tony.png' },
+        { id: 30307, nom: 'Zidane', prenom: 'Zinedine', photo: 'Images/coach_zidane.jpeg' },
+        { id: 30308, nom: 'Dupont', prenom: 'Antoine', photo: 'Images/coach_antoine.webp' },
+        { id: 30309, nom: 'Nadal', prenom: 'Rafael', photo: 'Images/coach_nadal.webp' },
+        { id: 303010, nom: 'Bernard', prenom: 'Alain', photo: 'Images/coach_alain.jpeg' },
+        { id: 303011, nom: 'Mears', prenom: 'Chris', photo: 'Images/coach_chris.webp' }
+    ];
+
+    function renderCoachCards() {
+        const container = document.getElementById('coach-container');
+        container.innerHTML = '';
+        coaches.forEach(coach => {
+            const card = document.createElement('div');
+            card.className = 'coach-card';
+            card.innerHTML = `
+                <img src="${coach.photo}" alt="${coach.nom} ${coach.prenom}" class="coach-photo">
+                <h3>${coach.nom} ${coach.prenom}</h3>
+                <div class="button-group">
+                    <button onclick="window.location.href='coach_${coach.id}.html'">Voir détails</button>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+    }
+
+    renderCoachCards();
+</script>
+
+</body>
+</html>
