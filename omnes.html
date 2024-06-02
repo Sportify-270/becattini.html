@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salle de sport Omnes</title>
+    <style>
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+        .container img {
+            width: 100%;
+            height: auto;
+        }
+        .contact-info {
+            margin-top: 20px;
+        }
+        .services-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Salle de sport Omnes</h1>
+    <img src="C:\Users\tahar\OneDrive\Bureau\PJ WEB 2024 AYADI NAJJAR PERRON VOUGAZsalle_de_sport.jpeg" alt="Salle de sport Omnes">
+    <div class="contact-info">
+        <p>Numéro de salle: EM001</p>
+        <p>Téléphone: 01 56 21 92 77</p>
+        <p>Email: sportify@icloud.com</p>
+        <p>Adresse: 10 rue Sextius Michel, 75015 Paris</p>
+    </div>
+    <button class="services-button" onclick="showServices()">Nos services</button>
+</div>
+
+<script>
+    function showServices() {
+        window.location.href = 'services.html';
+    }
+</script>
+
+</body>
+</html>
