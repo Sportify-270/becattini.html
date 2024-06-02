@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Sportify: Consultation Sportive</title>
+    <link rel="stylesheet" href="Votre_Compte.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <h1>Sportify : Planifiez, Progressez, Surprenez.</h1>
+            <img src="Images/logo_sportify.webp" alt="Sportify Logo">
+        </header>
+        <nav>
+            <ul>
+                <li><a href="accueil.html">Accueil</a></li>
+                <li><a href="Tout_Parcourir.html">Tout Parcourir</a></li>
+                <li><a href="Recherche.html">Recherche</a></li>
+                <li><a href="Rendez-vous.html">Rendez-vous</a></li>
+                <li><a href="Votre_Compte.html" class="active">Votre Compte</a></li>
+            </ul>
+        </nav>
+        <section class="content">
+            <div class="container">
+                <h2>Inscrivez-vous</h2>
+                <div class="buttons">
+                    <button onclick="showForm('clientForm')">Client</button>
+                    <button onclick="showForm('specialistForm')">Spécialiste</button>
+                </div>
+                <form id="loginForm" class="visible" onsubmit="return validateLoginForm()">
+                    <div id="loginError" class="error"></div>
+                    <h2>Connectez-vous</h2>
+                    <label for="loginType">Type de connexion:</label>
+                    <select id="loginType" name="loginType" required>
+                        <option value="client">Client</option>
+                        <option value="specialist">Spécialiste</option>
+                        <option value="admin">Administrateur</option>
+                    </select>
+                    <label for="login">Email:</label>
+                    <input type="email" id="login" name="login" required>
+                    <label for="password">Mot de passe:</label>
+                    <input type="password" id="password" name="password" required>
+                    <button type="submit">Valider</button>
+                </form>
+                <form id="clientForm" onsubmit="return validateClientForm()">
+                    <div id="clientError" class="error"></div>
+                    <label for="clientNom">Nom:</label>
+                    <input type="text" id="clientNom" name="clientNom" required>
+                    <label for="clientPrenom">Prénom:</label>
+                    <input type="text" id="clientPrenom" name="clientPrenom" required>
+                    <label for="clientAdresse">Adresse:</label>
+                    <input type="text" id="clientAdresse" name="clientAdresse" required>
+                    <label for="clientVille">Ville:</label>
+                    <input type="text" id="clientVille" name="clientVille" required>
+                    <label for="clientCdp">Code postal:</label>
+                    <input type="text" id="clientCdp" name="clientCdp" required>
+                    <label for="clientPays">Pays:</label>
+                    <input type="text" id="clientPays" name="clientPays" required>
+                    <label for="clientMail">Email:</label>
+                    <input type="email" id="clientMail" name="clientMail" required>
+                    <label for="mot de passe">Mot de Passe:</label>
+                    <input type="mot de passe" id="mot de passe" name="mot de passe" required>
+                    <label for="clientCarte">Carte étudiante:</label>
+                    <input type="file" id="clientCarte" name="clientCarte" accept="image/*" required>
+                    <label for="clientTelephone">Numéro de téléphone:</label>
+                    <input type="tel" id="clientTelephone" name="clientTelephone" required>
+                    <label>
+                        <input type="checkbox" id="clientConditions" name="clientConditions" required>
+                        J'accepte les conditions du site Sportify.
+                    </label>
+                    <button type="submit">Valider</button>
+                </form>
+                <form id="specialistForm" onsubmit="return validateSpecialistForm()">
+                    <div id="specialistError" class="error"></div>
+                    <label for="specialistNom">Nom:</label>
+                    <input type="text" id="specialistNom" name="specialistNom" required>
+                    <label for="specialistPrenom">Prénom:</label>
+                    <input type="text" id="specialistPrenom" name="specialistPrenom" required>
+                    <label for="specialistPhoto">Photo:</label>
+                    <input type="file" id="specialistPhoto" name="specialistPhoto" accept="image/*" required>
+                    <label for="specialistCv">CV:</label>
+                    <input type="file" id="specialistCv" name="specialistCv" accept=".pdf,.doc,.docx" required>
+                    <label for="specialistTelephone">Numéro de téléphone:</label>
+                    <input type="tel" id="specialistTelephone" name="specialistTelephone" required>
+                    <label for="specialistMail">Email:</label>
+                    <input type="email" id="specialistMail" name="specialistMail" required>
+                    <label for="mot de passe">Mot de Passe:</label>
+                    <input type="mot de passe" id="mot de passe" name="mot de passe" required>
+                    <label for="specialistSpecialite">Spécialité:</label>
+                    <input type="text" id="specialistSpecialite" name="specialistSpecialite" required>
+                    <button type="submit">Valider</button>
+                </form>
+                <form id="adminForm" onsubmit="return validateAdminForm()">
+                    <div id="adminError" class="error"></div>
+                    <label for="adminNom">Nom:</label>
+                    <input type="text" id="adminNom" name="adminNom" required>
+                    <label for="adminPrenom">Prénom:</label>
+                    <input type="text" id="adminPrenom" name="adminPrenom" required>
+                    <label for="adminMail">Email:</label>
+                    <input type="email" id="adminMail" name="adminMail" required>
+                    <label for="password">Mot de passe:</label>
+                    <input type="password" id="password" name="password" required>
+                    <button type="submit">Valider</button>
+                </form>
+            </div>
+        </section>
+        <footer>
+            <div class="footer-container">
+                <div class="footer-item">
+                    <h3>Mail</h3>
+                    <a href="mailto:Sportify@icloud.com">Sportify@icloud.com</a>
+                </div>
+                <div class="footer-item">
+                    <h3>Téléphone</h3>
+                    <a href="tel:+1234567890">01 56 21 92 77</a>
+                </div>
+                <div class="footer-item">
+                    <h3>Adresse</h3>
+                    <a href="https://www.google.com/maps/search/?api=1&query=123+Rue+Exemple,+75001+Paris,+France">10 Rue Sextius Michel, 75015 Paris, France</a>
+                </div>
+                <div class="footer-item">
+                    <h3>Maps</h3>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5250.745247410144!2d2.2859626769064074!3d48.85110447133124!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e6701b486bb253%3A0x61e9cc6979f93fae!2s10%20Rue%20Sextius%20Michel%2C%2075015%20Paris!5e0!3m2!1sen!2sfr!4v1717341231304!5m2!1sen!2sfr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="Votre_Compte.js"></script>
+</body>
+</html>
