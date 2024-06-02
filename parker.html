@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détails du Coach Tony Parker</title>
+    <style>
+        .coach-details {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+        .coach-photo {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+        }
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+        }
+        .schedule-table th, .schedule-table td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+        }
+        .schedule-slot {
+            cursor: pointer;
+            background-color: #f0f0f0;
+        }
+        .schedule-slot:hover {
+            background-color: #ddd;
+        }
+        .reserved-slot {
+            background-color: #ffcccc;
+            cursor: not-allowed;
+        }
+        .button-group {
+            margin-top: 10px;
+        }
+        .button-group button {
+            margin: 5px;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .back-button {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<button class="back-button" onclick="goBack()">← Retour</button>
+<div id="coach-details"></div>
+
+<script>
+    const coach = {
+        id: 30306,
+        nom: 'Parker',
+        prenom: 'Tony',
+        photo: 'Images/coach_tony.png',
+        calendrier: {
+            Lundi: '9h-15h',
+            Mardi: '10h-18h',
+            Mercredi: '11h-20h',
+            Jeudi: '9h-15h',
+            Vendredi: '10h-18h',
+            Samedi: 'x',
+            Dimanche: 'x'
+        },
+        cv: 'XML/tony.xml',
+        mail: 'Tony.parker@sportify.com'
+    };
+
+    const reservations = {}; // Réserver les créneaux ici
+
+    function showCoachDetails(coach) {
+        const container = document.getElementById('coach-details');
+        container.innerHTML = `
+            <div class="coach-details">
+                <img src="${coach.photo}" alt="${coach.nom} ${coach.prenom}" class="coach-photo">
+                <h2>${coach.nom} ${coach.prenom}</h2>
+                <div class="button-group">
+                    <button onclick="showSchedule(${coach.id})">Prendre RDV</button>
+                    <button onclick="showCV('${coach.cv}')">Voir son CV</button>
+                    <button onclick="communicate('${coach.mail}')">Communiquer</button>
+                </div>
+                <div id="schedule-${coach.id}" style="display: none;"></div>
+            </div>
+        `;
+    }
+
+    function showSchedule(coachId) {
+        const scheduleDiv = document.getElementById(`schedule-${coachId}`);
+        if (scheduleDiv.style.display === 'none') {
+            scheduleDiv.style.display = 'block';
+            scheduleDiv.innerHTML = createScheduleTable(coach);
+        } else {
+            scheduleDiv.style.display = 'none';
+        }
+    }
+
+    function showCV(cvUrl) {
+        window.open(cvUrl, '_blank');
+    }
+
+    function communicate(mail) {
+        window.location.href = `mailto:${mail}`;
+    }
+
+    function createScheduleTable(coach) {
+        const days = Object.keys(coach.calendrier);
+        let table = `<table class="schedule-table"><tr>`;
+        days.forEach(day => {
+            table += `<th>${day}</th>`;
+        });
+        table += `</tr><tr>`;
+        days.forEach(day => {
+            const times = coach.calendrier[day] === 'x' ? [] : getTimeSlots(coach.calendrier[day]);
+            table += `<td>${times.map(time => `
+                <div class="schedule-slot ${isReserved(coach.id, day, time) ? 'reserved-slot' : ''}" 
+                    onclick="bookSlot(${coach.id}, '${coach.nom}', '${coach.prenom}', '${day}', '${time}')">
+                    ${time}
+                </div>`).join('')}
+            </td>`;
+        });
+        table += `</tr></table>`;
+        return table;
+    }
+
+    function getTimeSlots(range) {
+        const [start, end] = range.split('-').map(t => parseTime(t.trim()));
+        const slots = [];
+        let current = start;
+        while (current < end) {
+            slots.push(formatTime(current));
+            current.setMinutes(current.getMinutes() + 30);
+        }
+        return slots;
+    }
+
+    function parseTime(timeStr) {
+        const [hours, minutes] = timeStr.split('h').map(Number);
+        const date = new Date();
+        date.setHours(hours, minutes, 0, 0);
+        return date;
+    }
+
+    function formatTime(date) {
+        return `${date.getHours()}h${date.getMinutes() === 0 ? '' : date.getMinutes()}`;
+    }
+
+    function isReserved(coachId, day, time) {
+        return reservations[coachId] && reservations[coachId][day] && reservations[coachId][day].includes(time);
+    }
+
+    function bookSlot(coachId, nom, prenom, day, time) {
+        if (isReserved(coachId, day, time)) {
+            alert(`Ce créneau est déjà réservé.`);
+            return;
+        }
+        if (!reservations[coachId]) reservations[coachId] = {};
+        if (!reservations[coachId][day]) reservations[coachId][day] = [];
+        reservations[coachId][day].push(time);
+        alert(`RDV pris avec ${nom} ${prenom} le ${day} à ${time}`);
+        showSchedule(coachId); // Rafraîchir l'affichage des créneaux
+    }
+
+    function goBack() {
+        window.history.back();
+    }
+
+    showCoachDetails(coach);
+</script>
+
+</body>
+</html>
