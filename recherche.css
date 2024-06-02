@@ -1,0 +1,224 @@
+
+
+header 
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    margin: 0px; 
+    color: white;  /* Improved contrast for readability */
+}
+
+header h1 
+{
+    font-size: 50px;
+    margin: 0;
+    color: #28511c;
+    background-color: white;
+}
+
+header img 
+{
+    position: absolute;
+    right: 10px; /* Adjust spacing from the right edge of the viewport */
+    top: 30px; /* Adjust spacing from the top of the viewport */
+    width: 150px; /* Or whatever size fits your design */
+    height: auto; /* Maintain aspect ratio */
+}
+
+
+
+nav 
+{
+    background-color: #B2BEB5;
+    margin: 10px;
+    padding: 10px 0;
+    margin-bottom: 15px;
+    border-radius: 8px; /* Optional: adds rounded corners */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25); /* Adds shadow for 3D effect */
+    margin-top: 25px;
+
+}
+
+nav ul 
+{
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+}
+
+nav li 
+{
+    margin: 0 10px;
+}
+
+nav a 
+{
+    text-decoration: none;
+    color: black;  /* Improved contrast for readability */
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+nav a.active, nav a:hover 
+{
+    background-color: #467061; /* quand la souris es sur le bouton*/
+    color: white;
+}
+
+
+.search-container {
+
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    border-top: none; /* Supprime la bordure supérieure */
+
+}
+
+#search-box {
+    flex-grow: 1;
+    margin-right: 10px;
+    border-radius: 8px;
+     width: 80%;
+
+}
+
+#search-button {
+    background-color: #467061;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 8px;
+
+
+}
+.result-item {
+    margin-top: 50px;
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.result-item img {
+    width: 100%; /* Ajustez selon votre besoin, mais 100% est souvent trop large pour les images de profil */
+    max-width: 300px; /* Limite la largeur maximale de l'image */
+    height: auto;
+    border-radius: 50%; /* Pour les images rondes, si souhaité */
+    margin-bottom: 15px;
+}
+
+.info {
+    text-align: center;
+    width: 100%;
+}
+
+.info p {
+    margin: 4px 0;
+    color: #333; /* Ou toute autre couleur qui convient au design de votre site */
+}
+
+
+.info a {
+    display: inline-block;
+    background-color: #467061; /* Couleur de fond du bouton */
+    color: white; /* Couleur du texte */
+    padding: 8px 12px; /* Padding intérieur */
+    text-decoration: none; /* Enlève le soulignement par défaut des liens */
+    border-radius: 4px; /* Bords arrondis pour le bouton */
+    margin-top: 5px; /* Espacement au-dessus du bouton */
+}
+
+.info a:hover {
+    background-color: #355048; /* Couleur de fond au survol */
+}
+
+
+
+
+#loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+}
+
+
+
+footer 
+{
+    background-color: #B2BEB5;  /* Adjust color to fit your design */
+    color: black;
+    padding: 20px 0;
+    text-align: center;
+    border-radius: 8px; /* Optional: adds rounded corners */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25); /* Adds shadow for 3D effect */
+}
+
+.footer-container 
+{
+    display: flex;
+    justify-content: space-around; /* This will space out the footer items evenly */
+    align-items: center;
+    flex-wrap: wrap; /* Wraps footer items onto the next line on smaller screens */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 0px; /* Added padding for better spacing */
+}
+
+.footer-item 
+{
+    flex: 1 1 220px; /* Adjust the flex-basis to 220px so each item has a minimum width of 220px */
+    margin: 5px;
+    padding: 0px;
+    box-sizing: border-box; /* Includes padding and border in the element's total width and height */
+}
+
+.footer-item iframe 
+{
+    width: 100%; /* Full width of its container for a better responsive design */
+    max-width: 400px; /* Larger than previously to provide a better view */
+    height: 150px; /* Increased height for better map visibility */
+    border: 0; /* Removing border if any exists */
+    border-radius: 8px; /* Optional: adds rounded corners */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25); /* Adds shadow for 3D effect */
+    margin-top: 15px; /* Ensures there's space above the map */
+}
+
+
+.footer-item:hover {
+    transform: translateY(-5px); /* Slight lift effect on hover for interactivity */
+    transition: transform 0.3s ease-in-out; /* Smooth transition for hover effect */
+    color: #467061;
+
+}
+
+.footer-item iframe:hover {
+    filter: brightness(1.1); /* Slightly brighten the map on hover for emphasis */
+    cursor: pointer; /* Indicate that the map is interactive */
+}
+
+
+
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
