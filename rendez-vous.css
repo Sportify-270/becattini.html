@@ -1,0 +1,215 @@
+
+
+header 
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    margin: 0px; 
+    color: white;  /* Improved contrast for readability */
+}
+
+header h1 
+{
+    font-size: 50px;
+    margin: 0;
+    color: #28511c;
+    background-color: white;
+}
+
+header img 
+{
+    position: absolute;
+    right: 10px; /* Adjust spacing from the right edge of the viewport */
+    top: 30px; /* Adjust spacing from the top of the viewport */
+    width: 200px; /* Or whatever size fits your design */
+    height: auto; /* Maintain aspect ratio */
+}
+
+
+
+nav 
+{
+    background-color: #B2BEB5;
+    margin: 10px;
+    padding: 10px 0;
+    margin-bottom: 15px;
+    border-radius: 8px; /* Optional: adds rounded corners */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25); /* Adds shadow for 3D effect */
+    margin-top: 25px;
+
+}
+
+nav ul 
+{
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+}
+
+nav li 
+{
+    margin: 0 10px;
+}
+
+nav a 
+{
+    text-decoration: none;
+    color: black;  /* Improved contrast for readability */
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+nav a.active, nav a:hover 
+{
+    background-color: #467061; /* quand la souris es sur le bouton*/
+    color: white;
+}
+
+
+
+.intro-full h2 
+{
+    color: #467061;/* Deep purple for visibility and importance */
+}
+
+
+.content 
+{
+    display: flex;
+    flex-direction: column;
+    color: black;
+}
+
+
+
+.conteneur-rendez-vous {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    width: 100%; /* Ajustez la largeur selon les besoins */
+    border-bottom: 1px solid #000; /* Si vous avez besoin d'une ligne sous le texte */
+}
+
+.label-rendez-vous {
+    font-size: 16px; /* Ajustez la taille selon les besoins */
+    font-weight: bold;
+}
+
+.bouton-annuler-rendez-vous {
+    padding: 8px 16px;
+    border-radius: 8px; /* Optional: adds rounded corners */
+    color: black;
+    background-color: #B2BEB5;
+    border: none;
+    cursor: pointer;
+}
+
+.bouton-annuler-rendez-vous:hover {
+    background-color: #467061; /* Light grey background on hover */
+    color: white;
+}
+
+
+
+
+footer 
+{
+    background-color: #B2BEB5;  /* Adjust color to fit your design */
+    color: black;
+    padding: 20px 0;
+    text-align: center;
+    border-radius: 8px; /* Optional: adds rounded corners */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25); /* Adds shadow for 3D effect */
+}
+
+.footer-container 
+{
+    display: flex;
+    justify-content: space-around; /* This will space out the footer items evenly */
+    align-items: center;
+    flex-wrap: wrap; /* Wraps footer items onto the next line on smaller screens */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 10px; /* Added padding for better spacing */
+}
+
+.footer-item 
+{
+    flex: 1 1 220px; /* Adjust the flex-basis to 220px so each item has a minimum width of 220px */
+    margin: 5px;
+    padding: 10px;
+    box-sizing: border-box; /* Includes padding and border in the element's total width and height */
+}
+
+.footer-item iframe 
+{
+    width: 100%; /* Full width of its container for a better responsive design */
+    max-width: 400px; /* Larger than previously to provide a better view */
+    height: 150px; /* Increased height for better map visibility */
+    border: 0; /* Removing border if any exists */
+    border-radius: 8px; /* Optional: adds rounded corners */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25); /* Adds shadow for 3D effect */
+    margin-top: 15px; /* Ensures there's space above the map */
+}
+
+
+.footer-item:hover {
+    transform: translateY(-5px); /* Slight lift effect on hover for interactivity */
+    transition: transform 0.3s ease-in-out; /* Smooth transition for hover effect */
+    color: #467061;
+
+}
+
+.footer-item iframe:hover {
+    filter: brightness(1.1); /* Slightly brighten the map on hover for emphasis */
+    cursor: pointer; /* Indicate that the map is interactive */
+}
+
+
+@media (max-width: 800px) {
+    .footer-container {
+        justify-content: center; /* Center the items when they stack vertically on smaller screens */
+    }
+    .footer-item {
+        flex: 1 1 100%; /* Makes each footer item take full width of the screen on small devices */
+    }
+}
+
+
+
+body /*texte dans intro et section et footer*/
+{
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #fff;
+    color: red;
+}
+
+
+
+.wrapper 
+{
+    max-width: none; /* Or you can use 100% */
+    width: 100%;
+    margin: 0 auto;
+    padding: 50px;
+    background-color: white;
+
+}
+
+
+
+/* Additional responsiveness for smaller screens */
+@media (max-width: 800px) 
+{
+    .flex-container 
+    {
+        flex-direction: column; /* Stacks the columns vertically on small screens */
+    }
+}
