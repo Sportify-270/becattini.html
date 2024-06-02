@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nos Services</title>
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            text-align: center;
+            color: black;
+        }
+        .service-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            cursor: pointer;
+            background-color: #467061;
+            color: white;
+            border: none;
+            text-align: left;
+            font-size: 16px;
+            border-radius: 8px;
+        }
+        .service-content {
+            display: none;
+            margin-top: 20px;
+        }
+        .back-button {
+            background-color: #467061;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Nos Services</h1>
+    <button class="service-button" onclick="toggleContent('personnel')">Personnels de la salle de sport</button>
+    <div id="personnel" class="service-content">
+        <p>Notre salle de sport Omnes dispose d'un personnel qualifié et expérimenté pour vous accompagner dans votre parcours fitness. Nos coachs sont spécialisés dans différentes disciplines et sont là pour vous guider, vous motiver et vous aider à atteindre vos objectifs.</p>
+        <p>Chaque membre de notre personnel est certifié et possède une expérience pratique significative. Voici quelques-uns des experts que vous rencontrerez :</p>
+        <ul>
+            <li><strong>Thibaud Delapart</strong> - Expert en musculation, il vous aidera à développer votre force et votre endurance.</li>
+            <li><strong>David Goggins</strong> - Spécialiste en fitness, il se concentre sur l'amélioration de la condition physique globale.</li>
+            <li><strong>Shane Sutton</strong> - Coach en biking, il vous aidera à améliorer vos performances en cyclisme.</li>
+            <li><strong>Shaun Thompson</strong> - Expert en cardio-training, il vous guidera pour optimiser votre santé cardiovasculaire.</li>
+        </ul>
+        <p>Nous organisons régulièrement des sessions de formation pour notre personnel afin de garantir qu'ils sont au courant des dernières tendances et techniques en matière de fitness et de bien-être.</p>
+    </div>
+
+    <button class="service-button" onclick="toggleContent('horaire')">Horaire de la gym</button>
+    <div id="horaire" class="service-content">
+        <p>La salle de sport Omnes est ouverte du lundi au vendredi de 6h à 22h, et le samedi et dimanche de 8h à 20h. Nous proposons des sessions de groupe et des créneaux pour des entraînements individuels tout au long de la journée.</p>
+        <p>Voici un aperçu de notre emploi du temps typique :</p>
+        <ul>
+            <li><strong>Lundi - Vendredi :</strong> 6h - 10h : Entraînement libre | 10h - 12h : Cours de groupe | 12h - 14h : Pause déjeuner | 14h - 18h : Coaching personnel | 18h - 22h : Entraînement libre</li>
+            <li><strong>Samedi - Dimanche :</strong> 8h - 10h : Entraînement libre | 10h - 12h : Cours de groupe | 12h - 14h : Coaching personnel | 14h - 16h : Entraînement libre | 16h - 20h : Coaching personnel</li>
+        </ul>
+        <p>Nous organisons également des événements spéciaux et des ateliers certains soirs et week-ends. Veuillez consulter notre calendrier en ligne pour plus de détails et pour vous inscrire.</p>
+    </div>
+
+    <button class="service-button" onclick="toggleContent('regles')">Règles sur l’utilisation des machines</button>
+    <div id="regles" class="service-content">
+        <p>Pour garantir la sécurité et le confort de tous nos membres, nous demandons à chacun de respecter les règles suivantes lors de l’utilisation des machines :</p>
+        <ul>
+            <li>Utiliser une serviette sur chaque machine pour éviter la transpiration directe sur les équipements.</li>
+            <li>Nettoyer les machines après usage avec les lingettes désinfectantes fournies.</li>
+            <li>Respecter les durées maximales d'utilisation pour chaque appareil afin que tous les membres puissent en profiter.</li>
+            <li>Suivre les instructions des coachs et des panneaux d'information pour utiliser les machines correctement et éviter les blessures.</li>
+            <li>Ne pas laisser de poids ou d'équipements sur les machines après usage. Remettre les poids et accessoires à leur place.</li>
+        </ul>
+        <p>Nous avons des panneaux explicatifs et des vidéos de démonstration disponibles dans la salle pour vous aider à comprendre comment utiliser chaque machine en toute sécurité.</p>
+        <p>En cas de doute ou de question, notre personnel est toujours disponible pour vous assister.</p>
+    </div>
+
+    <button class="service-button" onclick="toggleContent('nouveaux_clients')">Nouveaux clients</button>
+    <div id="nouveaux_clients" class="service-content">
+        <p>Nous accueillons avec plaisir les nouveaux clients ! Pour vous inscrire, il suffit de passer par notre accueil pour remplir une fiche d'inscription et choisir un abonnement qui vous convient.</p>
+        <p>Voici les étapes pour devenir membre :</p>
+        <ul>
+            <li>Remplir une fiche d'inscription avec vos coordonnées personnelles et vos objectifs de fitness.</li>
+            <li>Choisir un type d'abonnement : mensuel, trimestriel, semestriel ou annuel.</li>
+            <li>Signer le contrat de membre et prendre connaissance des règles de la salle.</li>
+            <li>Planifier une session d'introduction avec un coach pour une évaluation de votre condition physique et la création d'un programme personnalisé.</li>
+        </ul>
+        <p>Nos coachs seront ravis de vous faire visiter la salle et de vous présenter les différentes activités disponibles. Nous offrons également des sessions d'essai gratuites pour les nouveaux membres afin qu'ils puissent découvrir nos installations et services.</p>
+    </div>
+
+    <button class="service-button" onclick="toggleContent('alimentation')">Alimentation et nutrition</button>
+    <div id="alimentation" class="service-content">
+        <p>Une bonne alimentation est essentielle pour optimiser vos performances sportives. Nos experts en nutrition sont disponibles pour vous conseiller et vous proposer des plans alimentaires adaptés à vos besoins et objectifs.</p>
+        <p>Nos services incluent :</p>
+        <ul>
+            <li>Consultations individuelles avec un nutritionniste pour évaluer vos besoins et créer un plan alimentaire personnalisé.</li>
+            <li>Plans alimentaires spécifiques pour la perte de poids, la prise de masse musculaire ou l'amélioration des performances sportives.</li>
+            <li>Ateliers de groupe sur la nutrition sportive, où vous apprendrez les principes de base d'une alimentation équilibrée et les stratégies pour maximiser vos résultats.</li>
+            <li>Recettes et conseils pour préparer des repas sains et nutritifs à la maison.</li>
+        </ul>
+        <p>Nous organisons également des conférences et des webinaires sur des sujets spécifiques liés à la nutrition et à la santé, animés par des experts du domaine.</p>
+    </div>
+
+    <button class="back-button" onclick="goBack()">Retour</button>
+</div>
+
+<script>
+    function toggleContent(id) {
+        const content = document.getElementById(id);
+        if (content.style.display === 'none' || content.style.display === '') {
+            content.style.display = 'block';
+        } else {
+            content.style.display = 'none';
+        }
+    }
+
+    function goBack() {
+        window.location.href = 'Tout_Parcourir.html';
+    }
+</script>
+
+</body>
+</html>
