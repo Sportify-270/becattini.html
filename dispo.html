@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prendre RDV avec un Coach</title>
+    <style>
+        .coach-card {
+            border: 1px solid #ccc;
+            padding: 16px;
+            margin: 16px;
+            text-align: center;
+        }
+        .coach-photo {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+        }
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+        }
+        .schedule-table th, .schedule-table td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+        }
+        .schedule-slot {
+            cursor: pointer;
+            background-color: #f0f0f0;
+        }
+        .schedule-slot:hover {
+            background-color: #ddd;
+        }
+        .reserved-slot {
+            background-color: #ffcccc;
+            cursor: not-allowed;
+        }
+        .button-group {
+            margin-top: 10px;
+        }
+        .button-group button {
+            margin: 5px;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .back-button {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<button class="back-button" onclick="goBack()">← Retour</button>
+<div id="coach-container"></div>
+
+<script>
+    const coaches = [
+        {
+            id: 30301,
+            nom: 'Delapart',
+            prenom: 'Thibaud',
+            photo: 'Images/coach_Tibo.jpeg',
+            calendrier: {
+                Lundi: '8h-16h',
+                Mardi: '8h-14h',
+                Mercredi: 'x',
+                Jeudi: '10h-18h',
+                Vendredi: '9h-17h',
+                Samedi: '8h-14h',
+                Dimanche: 'x'
+            },
+            cv: 'XML/tibo.xml',
+            mail: 'Thibaud.Delapart@sportify.com'
+        },
+        {
+            id: 30302,
+            nom: 'Goggins',
+            prenom: 'David',
+            photo: 'Images/coach_goggins.webp',
+            calendrier: {
+                Lundi: '10h-18h',
+                Mardi: '6h-14h',
+                Mercredi: '9h-17h',
+                Jeudi: 'x',
+                Vendredi: '11h-20h',
+                Samedi: '10h-17h',
+                Dimanche: 'x'
+            },
+            cv: 'XML/goggins.xml',
+            mail: 'David.goggins@sportify.com'
+        },
+        {
+            id: 30303,
+            nom: 'Sutton',
+            prenom: 'Shane',
+            photo: 'Images/coach_shane.webp',
+            calendrier: {
+                Lundi: '7h-15h',
+                Mardi: '6h-14h',
+                Mercredi: '8h-16h',
+                Jeudi: '10h-19h',
+                Vendredi: 'x',
+                Samedi: '9h-14h',
+                Dimanche: 'x'
+            },
+            cv: 'XML/shane.xml',
+            mail: 'Shane.sutton@sportify.com'
+        },
+        {
+            id: 30304,
+            nom: 'Thompson',
+            prenom: 'Shaun',
+            photo: 'Images/coach_shaun.jpeg',
+            calendrier: {
+                Lundi: '7h-16h',
+                Mardi: 'x',
+                Mercredi: '8h-17h',
+                Jeudi: '6h-15h',
+                Vendredi: '10h-19h',
+                Samedi: '10h-16h',
+                Dimanche: 'x'
+            },
+            cv: 'XML/shaun.xml',
+            mail: 'Shaun.thompson@sportify.com'
+        },
+        {
+            id: 30305,
+            nom: 'Becattini',
+            prenom: 'Justine',
+            photo: 'Images/coach_juju.jpeg',
+            calendrier: {
+                Lundi: '9h-17h',
+                Mardi: 'x',
+                Mercredi: '7h-15h',
+                Jeudi: '6h-14h',
+                Vendredi: '10h-18h',
+                Samedi: 'x',
+                Dimanche: '10h-16h'
+            },
+            cv: 'XML/juju.xml',
+            mail: 'Justine.becattini@sportify.com'
+        },
+        {
+            id: 30306,
+            nom: 'Parker',
+            prenom: 'Tony',
+            photo: 'Images/coach_tony.png',
+            calendrier: {
+                Lundi: '9h-15h',
+                Mardi: '10h-18h',
+                Mercredi: '11h-20h',
+                Jeudi: '9h-15h',
+                Vendredi: '10h-18h',
+                Samedi: 'x',
+                Dimanche: 'x'
+            },
+            cv: 'XML/tony.xml',
+            mail: 'Tony.parker@sportify.com'
+        },
+        {
+            id: 30307,
+            nom: 'Zidane',
+            prenom: 'Zinedine',
+            photo: 'Images/coach_zidane.jpeg',
+            calendrier: {
+                Lundi: '8h-16h',
+                Mardi: '10h-17h',
+                Mercredi: '9h-16h',
+                Jeudi: '7h-16h',
+                Vendredi: 'x',
+                Samedi: '10h-17h',
+                Dimanche: 'x'
+            },
+            cv: 'XML/zidane.xml',
+            mail: 'zinedine.zidane@sportify.com'
+        },
+        {
+            id: 30308,
+            nom: 'Dupont',
+            prenom: 'Antoine',
+            photo: 'Images/coach_antoine.webp',
+            calendrier: {
+                Lundi: '8h-17h',
+                Mardi: 'x',
+                Mercredi: '10h-15h',
+                Jeudi: '9h-18h',
+                Vendredi: '7h-14h',
+                Samedi: 'x',
+                Dimanche: '10h-15h'
+            },
+            cv: 'XML/antoine.xml',
+            mail: 'antoine.dupont@sportify.com'
+        },
+        {
+            id: 30309,
+            nom: 'Nadal',
+            prenom: 'Rafael',
+            photo: 'Images/coach_nadal.webp',
+            calendrier: {
+                Lundi: '8h-16h',
+                Mardi: '9h-17h',
+                Mercredi: '10h-18h',
+                Jeudi: 'x',
+                Vendredi: '9h-15h',
+                Samedi: '10h-18h',
+                Dimanche: 'x'
+            },
+            cv: 'XML/nadal.xml',
+            mail: 'Rafael.nadal@sportify.com'
+        },
+        {
+            id: 303010,
+            nom: 'Bernard',
+            prenom: 'Alain',
+            photo: 'Images/coach_alain.jpeg',
+            calendrier: {
+                Lundi: '7h-16h',
+                Mardi: '8h-17h',
+                Mercredi: 'x',
+                Jeudi: '9h-18h',
+                Vendredi: '10h-17h',
+                Samedi: '10h-15h',
+                Dimanche: 'x'
+            },
+            cv: 'XML/alain.xml',
+            mail: 'alain.bernard@sportify.com'
+        },
+        {
+            id: 303011,
+            nom: 'Mears',
+            prenom: 'Chris',
+            photo: 'Images/coach_chris.webp',
+            calendrier: {
+                Lundi: '8h-17h',
+                Mardi: '9h-18h',
+                Mercredi: 'x',
+                Jeudi: '10h-17h',
+                Vendredi: '9h-16h',
+                Samedi: 'x',
+                Dimanche: '10h-15h'
+            },
+            cv: 'XML/chris.xml',
+            mail: 'Chris.mears@sportify.com'
+        }
+    ];
+
+    const reservations = {}; // Réserver les créneaux ici
+
+    function renderCoachCards() {
+        const container = document.getElementById('coach-container');
+        container.innerHTML = '';
+        coaches.forEach(coach => {
+            const card = document.createElement('div');
+            card.className = 'coach-card';
+            card.innerHTML = `
+                <img src="${coach.photo}" alt="${coach.nom} ${coach.prenom}" class="coach-photo">
+                <h3>${coach.nom} ${coach.prenom}</h3>
+                <div class="button-group">
+                    <button onclick="showSchedule(${coach.id})">Prendre RDV</button>
+                    <button onclick="showCV('${coach.cv}')">Voir son CV</button>
+                    <button onclick="communicate('${coach.mail}')">Communiquer</button>
+                </div>
+                <div id="schedule-${coach.id}" style="display: none;"></div>
+            `;
+            container.appendChild(card);
+        });
+    }
+
+    function showSchedule(coachId) {
+        const coach = coaches.find(c => c.id === coachId);
+        const scheduleDiv = document.getElementById(`schedule-${coachId}`);
+        if (scheduleDiv.style.display === 'none') {
+            scheduleDiv.style.display = 'block';
+            scheduleDiv.innerHTML = createScheduleTable(coach);
+        } else {
+            scheduleDiv.style.display = 'none';
+        }
+    }
+
+    function showCV(cvUrl) {
+        window.open(cvUrl, '_blank');
+    }
+
+    function communicate(mail) {
+        window.location.href = `mailto:${mail}`;
+    }
+
+    function createScheduleTable(coach) {
+        const days = Object.keys(coach.calendrier);
+        let table = `<table class="schedule-table"><tr>`;
+        days.forEach(day => {
+            table += `<th>${day}</th>`;
+        });
+        table += `</tr><tr>`;
+        days.forEach(day => {
+            const times = coach.calendrier[day] === 'x' ? [] : getTimeSlots(coach.calendrier[day]);
+            table += `<td>${times.map(time => `
+                <div class="schedule-slot ${isReserved(coach.id, day, time) ? 'reserved-slot' : ''}" 
+                    onclick="bookSlot(${coach.id}, '${coach.nom}', '${coach.prenom}', '${day}', '${time}')">
+                    ${time}
+                </div>`).join('')}
+            </td>`;
+        });
+        table += `</tr></table>`;
+        return table;
+    }
+
+    function getTimeSlots(range) {
+        const [start, end] = range.split('-').map(t => parseTime(t.trim()));
+        const slots = [];
+        let current = start;
+        while (current < end) {
+            slots.push(formatTime(current));
+            current.setMinutes(current.getMinutes() + 30);
+        }
+        return slots;
+    }
+
+    function parseTime(timeStr) {
+        const [hours, minutes] = timeStr.split('h').map(Number);
+        const date = new Date();
+        date.setHours(hours, minutes, 0, 0);
+        return date;
+    }
+
+    function formatTime(date) {
+        return `${date.getHours()}h${date.getMinutes() === 0 ? '' : date.getMinutes()}`;
+    }
+
+    function isReserved(coachId, day, time) {
+        return reservations[coachId] && reservations[coachId][day] && reservations[coachId][day].includes(time);
+    }
+
+    function bookSlot(coachId, nom, prenom, day, time) {
+        if (isReserved(coachId, day, time)) {
+            alert(`Ce créneau est déjà réservé.`);
+            return;
+        }
+        if (!reservations[coachId]) reservations[coachId] = {};
+        if (!reservations[coachId][day]) reservations[coachId][day] = [];
+        reservations[coachId][day].push(time);
+        alert(`RDV pris avec ${nom} ${prenom} le ${day} à ${time}`);
+        showSchedule(coachId); // Rafraîchir l'affichage des créneaux
+    }
+
+    function goBack() {
+        window.history.back();
+    }
+
+    renderCoachCards();
+</script>
+
+</body>
+</html>
